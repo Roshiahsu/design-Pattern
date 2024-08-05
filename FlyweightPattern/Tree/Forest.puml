@@ -1,0 +1,32 @@
+@startuml
+class TreeFactory {
+    - TreeType[] treeTypes
+    + getTreeType(name, color, texture)
+}
+
+class TreeType {
+    - name
+    - color
+    - texture
+    + TreeType(name, color, texture)
+    + draw(canvas, x, y)
+}
+
+class Forest {
+    + Tree[] trees
+    + plantTree(x, y, name, color, texture): Tree
+    + draw(canvas)
+}
+
+class Tree {
+    + x
+    + y
+    + TreeType type
+    + draw(canvas)
+}
+
+TreeFactory o--> TreeType : uses
+Forest o--> Tree : contains
+Forest --> TreeFactory
+Tree --> TreeType : has
+@enduml
